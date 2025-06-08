@@ -22,10 +22,12 @@ def add(request):
             task = form.cleaned_data['task']
             tasks.append(task)
             return HttpResponseRedirect(reverse("tasks:index"))
-    else:
-        form = NewTaskForm()
+        else:
+            return render(request, "tasks/add.html", {
+                "form" : form
+            })
 
     return render(request, "tasks/add.html", {
-            "form" : form
+            "form" : NewTaskForm()
         })
     
